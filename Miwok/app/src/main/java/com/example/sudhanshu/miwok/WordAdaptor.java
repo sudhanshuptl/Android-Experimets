@@ -22,6 +22,7 @@ public class WordAdaptor extends ArrayAdapter<Words> {
     public WordAdaptor(Activity context, ArrayList<Words> words,int colorId) {
         super(context,0, words);
         mColorResourceId = colorId;
+
     }
 
 

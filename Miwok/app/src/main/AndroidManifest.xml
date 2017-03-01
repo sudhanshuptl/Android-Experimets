@@ -18,7 +18,11 @@
         <activity android:name=".NumbersActivity" android:label="@string/category_numbers" />
         <activity android:name=".PhrasesActivity" android:label="@string/category_phrases"/>
         <activity android:name=".FamilyActivity" android:label="@string/Category_family"/>
-        <activity android:name=".ColorsActivity" android:label="@string/category_colors"></activity>
+        <activity android:name=".ColorsActivity" android:label="@string/category_colors"></activity><!-- ATTENTION: This was auto-generated to add Google Play services to your project for
+     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
     </application>
 
 </manifest>

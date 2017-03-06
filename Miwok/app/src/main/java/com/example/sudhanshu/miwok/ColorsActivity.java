@@ -12,6 +12,12 @@ import java.util.ArrayList;
 import static com.example.sudhanshu.miwok.FamilyActivity.mediaPlayer;
 
 public class ColorsActivity extends AppCompatActivity {
+    private MediaPlayer.OnCompletionListener mCompleteListner = new MediaPlayer.OnCompletionListener(){
+        @Override
+        public void onCompletion(MediaPlayer mp) {
+            releaseMediaPlayer();
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,10 +43,31 @@ public class ColorsActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                //release media player before playing new media , in case previous media is playing
+                releaseMediaPlayer();
+
+
                 Words word = words.get(position);
                 mediaPlayer = MediaPlayer.create(ColorsActivity.this,word.getmAudioResourceId());
                 mediaPlayer.start();
+
+                //relese media after complete sound file
+                mediaPlayer.setOnCompletionListener(mCompleteListner);
             }
         });
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        releaseMediaPlayer();
+    }
+
+    private void releaseMediaPlayer(){
+        if(mediaPlayer !=null){
+            mediaPlayer.release();
+            mediaPlayer=null;
+        }
     }
 }

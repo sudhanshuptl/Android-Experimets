@@ -9,6 +9,13 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 public class FamilyActivity extends AppCompatActivity {
+    private MediaPlayer.OnCompletionListener mCompleteListner = new MediaPlayer.OnCompletionListener(){
+        @Override
+        public void onCompletion(MediaPlayer mp) {
+            releaseMediaPlayer();
+        }
+    };
+
     public static MediaPlayer mediaPlayer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,10 +44,31 @@ public class FamilyActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                //release media player before playing new media , in case previous media is playing
+                releaseMediaPlayer();
+
+
                 Words word = words.get(position);
                 mediaPlayer = MediaPlayer.create(FamilyActivity.this,word.getmAudioResourceId());
                 mediaPlayer.start();
+
+                //relese media after complete sound file
+                mediaPlayer.setOnCompletionListener(mCompleteListner);
             }
         });
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        releaseMediaPlayer();
+    }
+
+    private void releaseMediaPlayer(){
+        if(mediaPlayer !=null){
+            mediaPlayer.release();
+            mediaPlayer=null;
+        }
     }
 }

@@ -5,25 +5,31 @@ package quake.codecops.in.quakelive;
  */
 
 public class QuakData {
-    private String magnitude;
-    private String location;
-    private String date;
+    protected double mMagnitude;
+    protected String mLocation;
+    protected long mDate;
+    protected String mUrl;
 
-    public QuakData(String mag, String loc, String dte){
-        magnitude =mag;
-        location = loc;
-        date = dte;
+    public QuakData(double magnitude, String location, long date, String url) {
+        mMagnitude = magnitude;
+        mLocation = location;
+        mDate = date;
+        mUrl = url;
     }
 
-    public String getMagnitude() {
-        return magnitude;
-    }
-
-    public String getDate() {
-        return date;
+    public double getMagnitude() {
+        return mMagnitude;
     }
 
     public String getLocation() {
-        return location;
+        return mLocation;
+    }
+
+    public long getDate() {
+        return mDate;
+    }
+
+    public String getUrl() {
+        return mUrl;
     }
 }

@@ -37,14 +37,14 @@ public class QuackAdapter extends ArrayAdapter<QuakData> {
         //find textView
         TextView quackMagnitude = (TextView) listItemview.findViewById(R.id.magnitude);
         //set value to text view
-        quackMagnitude.setText(currentWord.getMagnitude());
-        Log.v("Magnitude",currentWord.getMagnitude());
+        quackMagnitude.setText(String.format("%1$,.1f", currentWord.getMagnitude()));
+        //Log.v("Magnitude",currentWord.getMagnitude());
 
         //add image view
         TextView quackDate = (TextView) listItemview.findViewById(R.id.date);
         //set values
-        quackDate.setText(currentWord.getDate());
-        Log.v("date",currentWord.getDate());
+        quackDate.setText(Long.toString(currentWord.getDate()));
+        //Log.v("date",currentWord.getDate());
         return listItemview;
     }
 }

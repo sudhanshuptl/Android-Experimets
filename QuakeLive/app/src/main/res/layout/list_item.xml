@@ -16,6 +16,7 @@
         />
     <TextView
         android:id="@+id/magnitude"
+        android:paddingLeft="26dp"
         android:layout_width="0dp"
         android:layout_height="@dimen/list_item_height"
         android:layout_weight="1"
